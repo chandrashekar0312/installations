@@ -1,0 +1,19 @@
+The EPEL (Extra Packages for Enterprise Linux) repository provides additional software packages that are not included in the standard Red Hat and CentOS repositories
+
+Enabling the EPEL Repository on CentOS 7
+------------------------------------------
+
+$ sudo yum install epel-release -y
+
+$ sudo yum repolist 
+
+Enabling the EPEL Repository on RHEL
+------------------------------------------
+
+$ sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-$(rpm -E '%{rhel}').noarch.rpm
+
+
+rpm -E '%{rhel}' will print the distribution version (6 or 7)
+
+
+
