@@ -1,0 +1,38 @@
+centos8 using dnf/yum
+=====================================================
+$ sudo dnf install maven
+
+$ mvn -vesion
+
+installing latest release of maven3.3+ requires jdk1.7  or above
+
+install openjdk11
+-----------------
+$ sudo dnf install java-11-openjdk-devel
+
+$ java -version
+
+download latest version of apache maven3.6.3
+-----------------------------------------------
+$ sudo wget https://www-us.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -P /tmp
+
+$ sudo tar xf /tmp/apache-maven-3.6.3-bin.tar.gz -C /opt
+
+$ sudo ln -s /opt/apache-maven-3.6.3 /opt/maven
+
+setup env variables
+--------------------
+
+$ sudo vi /etc/profile.d/maven.sh
+
+export JAVA_HOME=/usr/lib/jvm/jre-openjdk
+export M2_HOME=/opt/maven
+export MAVEN_HOME=/opt/maven
+export PATH=${M2_HOME}/bin:${PATH}
+
+$ sudo chmod +x /etc/profile.d/maven.sh
+
+$ source /etc/profile.d/maven.sh 
+
+
+
