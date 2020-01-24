@@ -1,0 +1,32 @@
+Nginx can be used as a standalone web server, and as a reverse proxy for Apache and other web servers.
+
+Installing Nginx on CentOS
+--------------------------
+
+$ sudo yum install epel-release
+
+$ yum install nginx -y
+
+$ sudo systemctl enable nginx
+
+$ sudo systemctl start nginx
+
+$ sudo systemctl status nginx
+
+Use the following commands to open the necessary ports:
+---------------------------------------------------------
+
+$ sudo firewall-cmd --permanent --zone=public --add-service=http
+$ sudo firewall-cmd --permanent --zone=public --add-service=https
+$ sudo firewall-cmd --reload
+
+Manage the Nginx Service with systemctl
+---------------------------------------
+
+$ sudo systemctl stop nginx
+
+$ sudo systemctl restart nginx
+
+$ sudo systemctl reload nginx
+
+$ sudo systemctl disable nginx 
