@@ -1,0 +1,71 @@
+Install MySQL 8.0 on CentOS 7
+-----------------------------
+
+$ sudo yum localinstall https://dev.mysql.com/get/mysql80-community-release-el7-1.noarch.rpm
+
+with yum:
+
+$ sudo yum install mysql-community-server -y
+
+Install MySQL 5.7 on CentOS 7
+------------------------------
+
+$ sudo yum localinstall https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+
+using yum:
+
+$ sudo yum install mysql-community-server
+
+$ sudo systemctl enable mysqld
+
+$ sudo systemctl start mysqld
+
+$ sudo systemctl status mysqld
+
+$ sudo systemctl disable mysqld
+
+Securing MySQL
+---------------
+
+$ sudo grep 'temporary password' /var/log/mysqld.log
+
+$ sudo mysql_secure_installation
+
+After entering the temporary password you will be asked to set a new password for user root.
+
+$ mysql -u root -p
+
+mysql> CREATE DATABASE new_database;
+
+mysql> use new_database; 
+
+reset a MySQL root password
+---------------------------
+
+$ mysql --version 
+
+$ sudo systemctl stop mysql 
+
+$ sudo mysqld_safe --skip-grant-tables & 
+
+$ mysql -u root
+
+MySQL 5.7.6 and later or MariaDB 10.1.20 and later:
+---------------------------------------------------
+mysql> ALTER USER 'root'@'localhost' IDENTIFIED BY 'MY_NEW_PASSWORD';
+mysql> FLUSH PRIVILEGES;
+
+or
+
+mysql> UPDATE mysql.user SET authentication_string = PASSWORD('MY_NEW_PASSWORD')
+mysql> WHERE User = 'root' AND Host = 'localhost';
+mysql> FLUSH PRIVILEGES;
+
+MySQL 5.7.5 and earlier or MariaDB 10.1.20 and earlier:
+-------------------------------------------------------
+mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('MY_NEW_PASSWORD');
+mysql> FLUSH PRIVILEGES;
+
+$ mysqladmin -u root -p shutdown        (new root password)
+
+$ sudo systemctl start mysql
